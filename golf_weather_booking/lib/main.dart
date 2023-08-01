@@ -143,7 +143,7 @@ class WeatherContainer extends State<CityWeather>  {
       for (var day in currData) {
 
         _weatherData.add({
-          'Date': (monthData[day.date?.month.toString()].toString() + ' ' + (day.date?.day).toString()),
+          'Date': (dayData[day.date?.day.toString()].toString() + ' ' + monthData[day.date?.month.toString()].toString() + ' ' + (day.date?.day).toString()),
           'Time': timeData[day.date?.hour.toString()],
           'Weather': 'Forecase: ' + day.weatherDescription.toString(),
           'Temp': day.temperature.toString(),
@@ -156,9 +156,12 @@ class WeatherContainer extends State<CityWeather>  {
       }
 	  }
 
+    void initState() {
+      _fetchCityWeather();
+    }
+
   @override
   Widget build(BuildContext context) {
-    _fetchCityWeather();
     print(_weatherData);
 
     return Center(
